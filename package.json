@@ -1,0 +1,13 @@
+{
+  "name": "rosa-lomba-da-silva-foundation",
+  "version": "1.0.0",
+  "description": "Website, donation platform and admin dashboard for the Rosa Lomba Da Silva Foundation",
+  "private": true,
+  "main": "backend/server.js",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "start": "node backend/server.js",
+    "create-admin": "node backend/create-admin.js",
+    "test": "node --test tests/app.test.js"
+  }
+}
