@@ -19,7 +19,9 @@ Run the integration suite with `npm test`. Open `APP_URL`. Health endpoint: `/ap
 
 ## Environment configuration
 
-See `.env.example`: `NODE_ENV`, `PORT`, `APP_URL`, `API_BASE_URL`, `DATABASE_PATH`, `SESSION_SECRET`, `COOKIE_SECURE`, `TRUST_PROXY`, `CORS_ALLOWED_ORIGINS`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM`, `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, `PAYPAL_BASE_URL`, `FLUTTERWAVE_PUBLIC_KEY`, `FLUTTERWAVE_SECRET_KEY`, `FLUTTERWAVE_SECRET_HASH`, `CRYPTO_PROVIDER`, `CRYPTO_API_KEY`, `UPLOAD_DIR`, `MAX_UPLOAD_SIZE`, `LOG_LEVEL`, `ADMIN_BOOTSTRAP_EMAIL`, `WHATSAPP_NUMBER`, `PUBLIC_CONTACT_EMAIL`, `PUBLIC_CONTACT_PHONE`, and `PUBLIC_LOCATION`.
+`PUBLIC_IMAGE_BASE_URL` sets the public image host used by homepage photos and the foundation logo. It defaults to `https://rldsf.byethost7.com/images/`.
+
+See `.env.example`: `NODE_ENV`, `PORT`, `APP_URL`, `PUBLIC_IMAGE_BASE_URL`, `API_BASE_URL`, `DATABASE_PATH`, `SESSION_SECRET`, `COOKIE_SECURE`, `TRUST_PROXY`, `CORS_ALLOWED_ORIGINS`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM`, `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET`, `PAYPAL_BASE_URL`, `FLUTTERWAVE_PUBLIC_KEY`, `FLUTTERWAVE_SECRET_KEY`, `FLUTTERWAVE_SECRET_HASH`, `CRYPTO_PROVIDER`, `CRYPTO_API_KEY`, `UPLOAD_DIR`, `MAX_UPLOAD_SIZE`, `LOG_LEVEL`, `ADMIN_BOOTSTRAP_EMAIL`, `WHATSAPP_NUMBER`, `PUBLIC_CONTACT_EMAIL`, `PUBLIC_CONTACT_PHONE`, and `PUBLIC_LOCATION`.
 
 Use real values only in the host's secret manager/environment. Production requires HTTPS, `COOKIE_SECURE=true`, a strong unique secret, a restrictive proxy configuration, persistent database/media storage, and an operational SMTP service. Contact and WhatsApp details are not rendered until a reviewed content implementation is configured.
 
