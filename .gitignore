@@ -1,0 +1,10 @@
+.env
+package-lock.json
+node_modules/
+*.sqlite
+*.sqlite-*
+logs/
+uploads/*
+!uploads/.gitkeep
+old/
+public/images/

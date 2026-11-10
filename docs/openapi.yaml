@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: Rosa Lomba Da Silva Foundation API
+  version: 1.0.0
+  description: Initial API. Payment provider integrations and some account workflows are not implemented.
+servers:
+  - url: /api/v1
+paths:
+  /health:
+    get:
+      summary: Health indicator
+      responses:
+        '200': {description: Available}
+  /programmes:
+    get:
+      summary: List published programmes
+      responses:
+        '200': {description: Published programme list}
+  /contact:
+    post:
+      summary: Submit contact message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, subject, message]
+              properties:
+                name: {type: string, maxLength: 100}
+                email: {type: string, format: email}
+                subject: {type: string, maxLength: 160}
+                message: {type: string, maxLength: 3000}
+      responses:
+        '201': {description: Received}
+        '400': {description: Invalid submission}
+  /donations:
+    post:
+      summary: Create pending donation record
+      description: Bank transfer only; details are pending configuration. PayPal, Flutterwave, crypto are disabled.
+      responses:
+        '201': {description: Pending record created}
+        '503': {description: Provider unavailable}

@@ -1,0 +1,7 @@
+INSERT OR IGNORE INTO roles(name,label) VALUES('administrator','Administrator'),('maintainer','Maintainer'),('editor','Content Editor'),('finance_manager','Finance Manager'),('programme_manager','Programme Manager'),('member','Member');
+INSERT OR IGNORE INTO permissions(name,description) VALUES('site.manage','Manage site settings and accounts'),('content.write','Create and edit content'),('content.approve','Review and publish content'),('finance.manage','Manage donations and reconciliation'),('programme.manage','Manage programme information'),('sensitive.read','Access restricted help/referral requests'),('countdown.manage','Create and publish event countdowns');
+INSERT OR IGNORE INTO role_permissions SELECT r.id,p.id FROM roles r CROSS JOIN permissions p WHERE r.name='administrator';
+INSERT OR IGNORE INTO role_permissions SELECT r.id,p.id FROM roles r JOIN permissions p ON p.name IN('content.write','programme.manage') WHERE r.name='editor';
+INSERT OR IGNORE INTO role_permissions SELECT r.id,p.id FROM roles r JOIN permissions p ON p.name IN('content.approve','content.write','countdown.manage') WHERE r.name='maintainer';
+INSERT OR IGNORE INTO role_permissions SELECT r.id,p.id FROM roles r JOIN permissions p ON p.name='finance.manage' WHERE r.name='finance_manager';
+INSERT OR IGNORE INTO role_permissions SELECT r.id,p.id FROM roles r JOIN permissions p ON p.name='programme.manage' WHERE r.name='programme_manager';

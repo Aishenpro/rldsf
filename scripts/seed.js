@@ -1,0 +1,1 @@
+import fs from 'node:fs';import {db} from '../src/database/index.js';import {migrate} from '../src/database/index.js';migrate();const sql=fs.readFileSync('src/database/seeds/001_safe_seed.sql','utf8');db.exec(sql);console.log('Safe roles and permissions seeded. No users or impact figures were created.');db.close();

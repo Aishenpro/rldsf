@@ -1,0 +1,1 @@
+import {app} from './app.js';import {env} from './config/env.js';import {db} from './database/index.js';const server=app.listen(env.PORT,()=>console.log(JSON.stringify({level:'info',message:'server_started',port:env.PORT})));function stop(){server.close(()=>{db.close();process.exit(0)})}process.on('SIGTERM',stop);process.on('SIGINT',stop);

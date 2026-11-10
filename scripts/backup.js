@@ -1,0 +1,1 @@
+import fs from 'node:fs';import path from 'node:path';import {db} from '../src/database/index.js';const dest=path.resolve(process.argv[2]||`./backup-${new Date().toISOString().replaceAll(':','-')}.sqlite`);await db.backup(dest);console.log(`Database backup written to ${dest}`);db.close();

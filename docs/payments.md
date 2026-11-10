@@ -1,0 +1,5 @@
+# Payment integration status
+
+PayPal Checkout and Flutterwave are not active. Current application routes fail closed unless bank transfer is selected; bank details are intentionally absent. The current bank route records `awaiting_confirmation` and a generated reference, but finance reconciliation UI and verified settlement transition are not implemented. Crypto is disabled; no provider availability or asset claims are made.
+
+Before each integration, consult current official provider docs and verify jurisdiction, merchant onboarding, supported currencies, fees, settlement, refunds, and webhook configuration. Implement server-side checkout creation, signed/authentic webhook verification, independent transaction lookup, expected amount/currency/merchant/reference checks, idempotency, legal state transitions, refund behavior and audit trail. Never trust browser callbacks. Use integer minor units; never store card secrets, private keys, or seed phrases. Keep sandbox mode until operational approval.

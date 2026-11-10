@@ -1,0 +1,3 @@
+import {randomBytes,timingSafeEqual} from 'node:crypto';
+const unsafe=new Set(['POST','PUT','PATCH','DELETE']);
+export function csrf(req,res,next){if(req.method==='GET'&&req.path==='/auth/csrf'){req.session.csrfToken??=randomBytes(32).toString('hex');return res.json({ok:true,token:req.session.csrfToken})}if(!unsafe.has(req.method))return next();const supplied=req.get('X-CSRF-Token')||'',expected=req.session?.csrfToken||'';const a=Buffer.from(supplied),b=Buffer.from(expected);if(!a.length||a.length!==b.length||!timingSafeEqual(a,b))return res.status(403).json({ok:false,error:'Request security check failed'});next()}

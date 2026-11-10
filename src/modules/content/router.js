@@ -1,0 +1,9 @@
+import {Router} from 'express';import {db} from '../../database/index.js';
+export const content=Router();
+content.get('/programmes',(req,res)=>{const items=db.prepare("SELECT slug,title,summary,status FROM programmes WHERE status='published' ORDER BY title LIMIT 100").all();res.json({ok:true,data:items})});
+content.get('/programmes/:slug',(req,res)=>{const item=db.prepare("SELECT slug,title,summary,body,audience,services,eligibility,status FROM programmes WHERE slug=? AND status='published'").get(req.params.slug);if(!item)return res.status(404).json({ok:false,error:'Programme information is not available'});res.json({ok:true,data:item})});
+content.get('/news',(req,res)=>{const page=Math.max(1,Number(req.query.page)||1);const rows=db.prepare("SELECT slug,title,summary,published_at FROM news_posts WHERE status='published' ORDER BY published_at DESC LIMIT 20 OFFSET ?").all((page-1)*20);res.json({ok:true,data:rows,page,limit:20})});
+content.get('/events',(req,res)=>res.json({ok:true,data:db.prepare("SELECT slug,title,description,starts_at,timezone,venue FROM events WHERE status='published' ORDER BY starts_at LIMIT 50").all()}));
+content.get('/team',(req,res)=>res.json({ok:true,data:db.prepare("SELECT name,position,biography,image_path FROM team_members WHERE status='published' ORDER BY name").all()}));
+content.get('/faqs',(req,res)=>res.json({ok:true,data:db.prepare("SELECT question,answer FROM faqs WHERE status='published' ORDER BY sort_order").all()}));
+content.get('/home',(req,res)=>{const sections=db.prepare("SELECT section_key,content_json FROM homepage_sections WHERE status='published'").all().map(x=>({...x,content:JSON.parse(x.content_json)}));res.json({ok:true,data:{sections,services:db.prepare("SELECT title,description,image_path,alt_text FROM service_cards WHERE status='published' ORDER BY sort_order").all()}})});

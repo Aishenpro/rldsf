@@ -1,0 +1,14 @@
+services:
+  foundation:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_PATH: /data/foundation.sqlite
+      UPLOAD_DIR: /data/uploads
+    volumes:
+      - foundation_data:/data
+    expose:
+      - "3000"
+volumes:
+  foundation_data:
